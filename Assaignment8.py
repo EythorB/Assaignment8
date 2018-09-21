@@ -1,16 +1,57 @@
 # Verkefni 8 - Tile Traveler leikur
+'''
+Við búum til 4 áttir: North, South, East og West. Notandi á að geta slegið inn áttina með stórum eða litlum staf.
 
-north = "n" or "N"
-south = "s" or "S"
-west = "w" or "W"
-east = "e" or "E"
+'''
+x = 1
+y = 1
+north = "(N)orth"
+south = "(S)outh"
+west = "(W)est"
+east = "(E)ast"
 
-position = 1
-tiles = "N"
+while x <= 3 or x >= 1  and y <= 3 or y >= 1:
 
-while tiles <= 9 and tiles >= 1:
-    if tiles == 1:
-        print("You can travel: (N)orth")
-        if 
+    if x == 1 and y == 1:
+        change_to = north + "."
+    elif x == 1 and y == 2:
+        change_to = north + " or " + south + " or " + east + "."
+    elif x == 1 and y == 3:
+        change_to = south + " or " + east + "."
+    elif x == 2 and y == 1:
+        change_to = north + "."
+    elif x == 2 and y == 2:
+        change_to = south + " or " + west + "."
+    elif x == 2 and y == 3:
+        change_to = west + " or " + east + "."
+    elif x == 3 and y == 3:
+        change_to = west + " or " + south + "."
+    elif x == 3 and y == 2:
+        change_to = north + " or " + south + "."
+    elif x == 3 and y == 1:
+        print("Victory!")
+        break
+    else:
+        change_to == 'x'
+        print("Not a valid direction!")
+
+
+    if change_to != 'x':
+        print("You can travel:", change_to)
+    direction = str(input("Direction: "))
+    lower_dir = direction.lower()
+
+
+    if lower_dir == "n":
+        y += 1
+    elif lower_dir == "s":
+        y -= 1
+    elif lower_dir == "w":
+        x -= 1
+    elif lower_dir == "e":
+        x += 1
     else:
         print("Not a valid direction!")
+
+
+

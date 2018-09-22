@@ -1,57 +1,69 @@
-# Verkefni 8 - Tile Traveler leikur
-'''
-Við búum til 4 áttir: North, South, East og West. Notandi á að geta slegið inn áttina með stórum eða litlum staf.
+#Við ákvuðum að skipta þessu niður í 4 áttir. North, south, east og west. 
+#Við vildum einnig að reitirnir myndu hafa táknið y og x
+#Eftir það notuðum við þá að north væri + x og south -
+#og þá west væri - y og east væri +
+#Síðan gerðum við forritið og allt heppnaðist vel
 
-'''
+for_low = ""
 x = 1
 y = 1
-north = "(N)orth"
-south = "(S)outh"
-west = "(W)est"
-east = "(E)ast"
+p = True
+n = "(N)orth"
+s = "(S)outh"
+e = "(E)ast"
+w = "(W)est"
 
-while x <= 3 or x >= 1  and y <= 3 or y >= 1:
+while True:
 
-    if x == 1 and y == 1:
-        change_to = north + "."
-    elif x == 1 and y == 2:
-        change_to = north + " or " + south + " or " + east + "."
-    elif x == 1 and y == 3:
-        change_to = south + " or " + east + "."
-    elif x == 2 and y == 1:
-        change_to = north + "."
-    elif x == 2 and y == 2:
-        change_to = south + " or " + west + "."
-    elif x == 2 and y == 3:
-        change_to = west + " or " + east + "."
-    elif x == 3 and y == 3:
-        change_to = west + " or " + south + "."
-    elif x == 3 and y == 2:
-        change_to = north + " or " + south + "."
-    elif x == 3 and y == 1:
-        print("Victory!")
+
+    if y == 1:
+        change = n + "."
+        for_low = "n"
+    if x == 1 and y == 2:
+        change = n + " or " + e + " or " + s + "."
+        for_low = "nes"
+    if x == 2 and y == 2:
+        change = s + " or " + w + "."
+        for_low = "sw"
+    if x == 1 and y == 3:
+        change = e + " or " + s + "."
+        for_low = "es"
+    if x == 2 and y == 3:
+        change = e + " or " + w + "."
+        for_low = "we"
+    if x == 3 and y == 3:
+        change = s + " or " + w + "."
+        for_low = "sw"
+    if x == 3 and y == 2:
+        change = n + " or " + s + "."
+        for_low = "sn"
+    
+    
+    if p == True:
+        print("You can travel: " + change)
+    p = False
+    direct = str(input("Direction: "))
+    low = direct.lower()
+
+    for l in for_low:
+        if low == l:
+            p = True
+    
+    if p == False:
+        print("Not a valid direction!")   
+
+    if p == True:
+        if low == "n":
+            y += 1
+
+        if low == "s":
+            y -= 1
+
+        if low == "e":
+            x += 1
+    
+        if low == "w":
+            x -= 1
+
+    if x == 3 and y == 1:
         break
-    else:
-        change_to == 'x'
-        print("Not a valid direction!")
-
-
-    if change_to != 'x':
-        print("You can travel:", change_to)
-    direction = str(input("Direction: "))
-    lower_dir = direction.lower()
-
-
-    if lower_dir == "n":
-        y += 1
-    elif lower_dir == "s":
-        y -= 1
-    elif lower_dir == "w":
-        x -= 1
-    elif lower_dir == "e":
-        x += 1
-    else:
-        print("Not a valid direction!")
-
-
-
